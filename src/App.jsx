@@ -7,14 +7,18 @@ function App() {
   const [tab, setTab] = useState("");
 
   return (
-    <>
-      <h1>welcome to Auth system</h1>
-      <button onClick={() => setTab("Register")}>Register</button>
-      <button onClick={() => setTab("Login")}>Login</button>
+    <div className="app-container">
+      <h1 className="app-title">Welcome to Auth System</h1>
+
+      <div className="tab-buttons">
+        <button onClick={() => setTab("Register")}>Register</button>
+
+        <button onClick={() => setTab("Login")}>Login</button>
+      </div>
 
       {tab === "Register" && <Register />}
       {tab === "Login" && <Login />}
-    </>
+    </div>
   );
 }
 

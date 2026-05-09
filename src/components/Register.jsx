@@ -88,7 +88,6 @@ function Register() {
           />
         </label>
         {errors.username && <span>{errors.username}</span>}
-        <br />
         <label>
           Email:
           <input
@@ -99,7 +98,6 @@ function Register() {
           />
         </label>
         {errors.email && <span>{errors.email}</span>}
-        <br />
         <label>
           Password:
           <input
@@ -110,7 +108,6 @@ function Register() {
           />
         </label>
         {errors.password && <span>{errors.password}</span>}
-        <br />
         <label>
           Role:
           <input
@@ -121,7 +118,6 @@ function Register() {
           />
         </label>
         {errors.role && <span>{errors.role}</span>}
-        <br />
         <button type="submit">Submit</button>
       </form>
       {/* if submitted the form show alert or show login form component */}

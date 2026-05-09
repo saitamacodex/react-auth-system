@@ -79,7 +79,6 @@ function Login() {
           />
         </label>
         {errors.username && <span>{errors.username}</span>}
-        <br />
         <label>
           Password:
           <input
@@ -90,7 +89,6 @@ function Login() {
           />
         </label>
         {errors.password && <span>{errors.password}</span>}
-        <br />
         <button type="submit">Submit</button>
       </form>
     </div>
