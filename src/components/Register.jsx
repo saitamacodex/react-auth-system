@@ -63,7 +63,7 @@ function Register() {
         const data = await response.json();
 
         setResponse(data);
-
+        console.log(response.status);
         if (response.status === 200 || response.status === 409) {
           setShowLogin(true);
         } else {
