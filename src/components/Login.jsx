@@ -57,6 +57,10 @@ function Login() {
       setResponses(data);
 
       setMessage(data.message);
+
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
     } catch (error) {
       console.error(error);
     }

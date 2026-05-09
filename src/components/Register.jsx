@@ -9,7 +9,7 @@ function Register() {
     role: "ADMIN",
   });
   const [errors, setErrors] = useState({});
-  const [response, setResponse] = useState({});
+  const [responses, setResponses] = useState({});
   const [showLogin, setShowLogin] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -63,14 +63,22 @@ function Register() {
         const response = await fetch(url, options);
         const data = await response.json();
 
-        setResponse(data);
-        console.log(response.status);
-        if (response.status === 200) {
+        setResponses(data);
+
+        if (response.ok) {
           setMessage("Registration successful. Please login.");
           setShowLogin(true);
+
+          setTimeout(() => {
+            setMessage("");
+          }, 5000);
         } else if (response.status === 409) {
           setMessage("User already exists. Please login.");
           setShowLogin(true);
+
+          setTimeout(() => {
+            setMessage("");
+          }, 5000);
         } else {
           alert(data.message);
         }
