@@ -11,6 +11,7 @@ function Register() {
   const [errors, setErrors] = useState({});
   const [response, setResponse] = useState({});
   const [showLogin, setShowLogin] = useState(false);
+  const [message, setMessage] = useState("");
 
   function set(field) {
     return (event) => {
@@ -64,7 +65,11 @@ function Register() {
 
         setResponse(data);
         console.log(response.status);
-        if (response.status === 200 || response.status === 409) {
+        if (response.status === 200) {
+          setMessage("Registration successful. Please login.");
+          setShowLogin(true);
+        } else if (response.status === 409) {
+          setMessage("User already exists. Please login.");
           setShowLogin(true);
         } else {
           alert(data.message);
@@ -77,51 +82,56 @@ function Register() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            value={values.username}
-            onChange={set("username")}
-            placeholder="Enter your username"
-          />
-        </label>
-        {errors.username && <span>{errors.username}</span>}
-        <label>
-          Email:
-          <input
-            type="email"
-            value={values.email}
-            onChange={set("email")}
-            placeholder="Enter your email-id."
-          />
-        </label>
-        {errors.email && <span>{errors.email}</span>}
-        <label>
-          Password:
-          <input
-            type="password"
-            value={values.password}
-            onChange={set("password")}
-            placeholder="Enter your passwords."
-          />
-        </label>
-        {errors.password && <span>{errors.password}</span>}
-        <label>
-          Role:
-          <input
-            type="text"
-            value={values.role}
-            onChange={set("role")}
-            placeholder="Enter your roles"
-          />
-        </label>
-        {errors.role && <span>{errors.role}</span>}
-        <button type="submit">Submit</button>
-      </form>
-      {/* if submitted the form show alert or show login form component */}
-      {showLogin && <Login />}
+      {!showLogin ? (
+        <form onSubmit={handleSubmit}>
+          <label>
+            Username:
+            <input
+              type="text"
+              value={values.username}
+              onChange={set("username")}
+              placeholder="Enter your username"
+            />
+          </label>
+          {errors.username && <span>{errors.username}</span>}
+          <label>
+            Email:
+            <input
+              type="email"
+              value={values.email}
+              onChange={set("email")}
+              placeholder="Enter your email-id."
+            />
+          </label>
+          {errors.email && <span>{errors.email}</span>}
+          <label>
+            Password:
+            <input
+              type="password"
+              value={values.password}
+              onChange={set("password")}
+              placeholder="Enter your passwords."
+            />
+          </label>
+          {errors.password && <span>{errors.password}</span>}
+          <label>
+            Role:
+            <input
+              type="text"
+              value={values.role}
+              onChange={set("role")}
+              placeholder="Enter your roles"
+            />
+          </label>
+          {errors.role && <span>{errors.role}</span>}
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
+        <>
+          <div className="success-message">{message}</div>
+          <Login />
+        </>
+      )}
     </div>
   );
 }

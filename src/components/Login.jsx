@@ -7,7 +7,8 @@ function Login() {
     username: "",
   });
   const [errors, setErrors] = useState({});
-  const [response, setResponse] = useState({});
+  const [responses, setResponses] = useState({});
+  const [message, setMessage] = useState("");
 
   function set(field) {
     return (event) => {
@@ -53,14 +54,9 @@ function Login() {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
+      setResponses(data);
 
-      setResponse(data);
-
-      if (response.status === 200) {
-        alert(data.message);
-      } else {
-        alert(data.message);
-      }
+      setMessage(data.message);
     } catch (error) {
       console.error(error);
     }
@@ -68,6 +64,7 @@ function Login() {
 
   return (
     <div>
+      {message && <div className="success-message">{message}</div>}
       <form onSubmit={handleSubmit}>
         <label>
           Username:
