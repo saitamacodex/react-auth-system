@@ -58,11 +58,6 @@ function Login({ setIsLoggedIn, setAccessToken, setLoginMessage }) {
         setAccessToken(data.data.accessToken);
         setIsLoggedIn(true);
         setLoginMessage(data.message);
-
-        // on success msg disapper
-        setTimeout(() => {
-          setMessage("");
-        }, 900);
       } else {
         setLoginMessage(data.message);
         setIsLoggedIn(false);

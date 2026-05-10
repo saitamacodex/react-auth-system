@@ -4,6 +4,7 @@ import Logout from "./Logout.jsx";
 
 function Profile({ token, loginMsg, setIsLoggedIn }) {
   const [user, setUser] = useState({});
+  const [message, setMessage] = useState(loginMsg);
 
   useEffect(() => {
     async function getCurrentUser() {
@@ -25,11 +26,18 @@ function Profile({ token, loginMsg, setIsLoggedIn }) {
       }
     }
     getCurrentUser();
+
+    // clear the message once logged in
+    const timer = setTimeout(() => {
+      setMessage("");
+    }, 4000);
+
+    return () => clearTimeout(timer);
   }, []);
 
   return (
     <div>
-      {loginMsg && <div className="success-message">{loginMsg}</div>}
+      {message && <div className="success-message">{message}</div>}
       <h2>Profile</h2>
       <hr />
       <br />
