@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Profile from "./Profile.jsx";
 
 function Login() {
   const [values, setValues] = useState({
@@ -7,8 +8,9 @@ function Login() {
     username: "",
   });
   const [errors, setErrors] = useState({});
-  const [responses, setResponses] = useState({});
   const [message, setMessage] = useState("");
+  const [IsLoggedIn, setIsLoggedIn] = useState(false);
+  const [accessToken, setAccessToken] = useState("");
 
   function set(field) {
     return (event) => {
@@ -54,9 +56,15 @@ function Login() {
     try {
       const response = await fetch(url, options);
       const data = await response.json();
-      setResponses(data);
 
-      setMessage(data.message);
+      if (response.ok) {
+        setAccessToken(data.data.accessToken);
+        setIsLoggedIn(true);
+        setMessage(data.message);
+      } else {
+        setMessage(data.message);
+        setIsLoggedIn(false);
+      }
 
       setTimeout(() => {
         setMessage("");
@@ -68,30 +76,34 @@ function Login() {
 
   return (
     <div>
-      {message && <div className="success-message">{message}</div>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            placeholder="Enter your username"
-            value={values.username}
-            onChange={set("username")}
-          />
-        </label>
-        {errors.username && <span>{errors.username}</span>}
-        <label>
-          Password:
-          <input
-            type="password"
-            placeholder="Enter your password"
-            value={values.password}
-            onChange={set("password")}
-          />
-        </label>
-        {errors.password && <span>{errors.password}</span>}
-        <button type="submit">Submit</button>
-      </form>
+      {!IsLoggedIn ? (
+        <form onSubmit={handleSubmit}>
+          {message && <div className="success-message">{message}</div>}
+          <label>
+            Username:
+            <input
+              type="text"
+              placeholder="Enter your username"
+              value={values.username}
+              onChange={set("username")}
+            />
+          </label>
+          {errors.username && <span>{errors.username}</span>}
+          <label>
+            Password:
+            <input
+              type="password"
+              placeholder="Enter your password"
+              value={values.password}
+              onChange={set("password")}
+            />
+          </label>
+          {errors.password && <span>{errors.password}</span>}
+          <button type="submit">Submit</button>
+        </form>
+      ) : (
+        <Profile token={accessToken} loginMsg={message} />
+      )}
     </div>
   );
 }
