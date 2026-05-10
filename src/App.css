@@ -1,151 +1,304 @@
-/* App.css */
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 body {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
   min-height: 100vh;
-  color: white;
+  background:
+    radial-gradient(circle at top left, #2563eb 0%, transparent 30%),
+    radial-gradient(circle at bottom right, #7c3aed 0%, transparent 30%),
+    linear-gradient(135deg, #020617, #0f172a);
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 24px;
+  color: white;
 }
 
 #root {
   width: 100%;
-  max-width: 500px;
+  max-width: 520px;
 }
 
+/* ===== Main Container ===== */
+
 .app-container {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(10px);
-  padding: 32px;
-  border-radius: 24px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  padding: 36px;
+  border-radius: 28px;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  animation: fadeIn 0.5s ease;
 }
+
+/* ===== Heading ===== */
 
 .app-title {
   text-align: center;
-  font-size: 2rem;
-  margin-bottom: 24px;
-  font-weight: 700;
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 28px;
+  background: linear-gradient(90deg, #60a5fa, #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
+/* ===== Tab Buttons ===== */
 
 .tab-buttons {
   display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 14px;
+  margin-bottom: 28px;
 }
 
 .tab-buttons button {
   flex: 1;
-  padding: 12px;
+  padding: 14px;
   border: none;
-  border-radius: 12px;
-  background: #334155;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.06);
   color: white;
-  cursor: pointer;
   font-size: 1rem;
-  transition: 0.3s ease;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .tab-buttons button:hover {
-  background: #475569;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
 }
+
+/* ===== Form ===== */
 
 form {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 20px;
 }
+
+/* ===== Labels ===== */
 
 label {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  color: #cbd5e1;
   font-size: 0.95rem;
+  font-weight: 500;
 }
+
+/* ===== Inputs ===== */
 
 input {
-  padding: 14px;
-  border-radius: 12px;
+  padding: 15px 16px;
+  border-radius: 14px;
   border: 1px solid transparent;
-  outline: none;
-  background: #1e293b;
+  background: rgba(255, 255, 255, 0.05);
   color: white;
   font-size: 0.95rem;
-  transition: 0.3s ease;
-}
-
-input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+  outline: none;
+  transition: all 0.3s ease;
 }
 
 input::placeholder {
   color: #94a3b8;
 }
 
+input:focus {
+  border-color: #60a5fa;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.18);
+}
+
+/* ===== Error Message ===== */
+
 span {
   color: #f87171;
   font-size: 0.85rem;
-  margin-top: -4px;
+  margin-top: -6px;
 }
+
+/* ===== Submit Button ===== */
 
 button[type="submit"] {
   margin-top: 8px;
-  padding: 14px;
+  padding: 15px;
   border: none;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
   color: white;
   font-size: 1rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 button[type="submit"]:hover {
-  transform: translateY(-2px);
-  opacity: 0.95;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.3);
 }
 
-@media (max-width: 600px) {
-  .app-container {
-    padding: 24px;
-  }
-
-  .app-title {
-    font-size: 1.6rem;
-  }
-}
+/* ===== Success Message ===== */
 
 .success-message {
-  background: rgba(34, 197, 94, 0.15);
-  color: #4ade80;
-  padding: 12px;
-  border-radius: 10px;
   margin-bottom: 18px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(74, 222, 128, 0.2);
+  color: #4ade80;
   text-align: center;
-  font-size: 0.95rem;
+  font-weight: 600;
 }
 
+/* ===== Profile Section ===== */
+
+.profile-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.profile-card h2 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 2rem;
+}
+
+.profile-info {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-info p {
+  margin-bottom: 10px;
+  color: #e2e8f0;
+}
+
+/* ===== Logout Button ===== */
+
 .logout-btn {
-  padding: 8px;
-  font-size: 1rem;
-  font-weight: bold;
-  background-color: #ff932f;
+  margin-top: 16px;
+  width: 100%;
+  padding: 14px;
   border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .logout-btn:hover {
-  cursor: pointer;
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+}
+
+/* ===== Animation ===== */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Responsive ===== */
+
+@media (max-width: 600px) {
+  .app-container {
+    padding: 26px;
+  }
+
+  .app-title {
+    font-size: 1.9rem;
+  }
+}
+
+/* profile desig */
+/* ===== Profile ===== */
+
+.profile-card {
+  animation: fadeIn 0.5s ease;
+}
+
+.profile-header {
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.15);
+  object-fit: cover;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.profile-role {
+  margin-top: 6px;
+  display: inline-block;
+  background: rgba(96, 165, 250, 0.15);
+  color: #e293fd;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.profile-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.profile-item span {
+  display: block;
+  color: #94a3b8;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.profile-item p {
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
 }
