@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { React, useState } from "react";
+import Logout from "./Logout.jsx";
 
-function Profile({ token, loginMsg }) {
+function Profile({ token, loginMsg, setIsLoggedIn }) {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -34,6 +35,9 @@ function Profile({ token, loginMsg }) {
       <br />
       <p>Email : {user?.data?.email}</p>
       <p>Username: {user?.data?.username}</p>
+      <br />
+      <hr />
+      <Logout accessToken={token} setIsLoggedIn={setIsLoggedIn} />
     </div>
   );
 }

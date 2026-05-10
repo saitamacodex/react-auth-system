@@ -13,7 +13,12 @@ function App() {
   return (
     <>
       {IsLoggedIn ? (
-        <Profile token={accessToken} loginMsg={LoginMessage} />
+        <Profile
+          token={accessToken}
+          loginMsg={LoginMessage}
+          loggedIn={IsLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
+        />
       ) : (
         <div className="app-container">
           <h1 className="app-title">Welcome to Auth System</h1>
