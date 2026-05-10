@@ -68,7 +68,7 @@ function Login() {
 
       setTimeout(() => {
         setMessage("");
-      }, 5000);
+      }, 900);
     } catch (error) {
       console.error(error);
     }
@@ -78,7 +78,6 @@ function Login() {
     <div>
       {!IsLoggedIn ? (
         <form onSubmit={handleSubmit}>
-          {message && <div className="success-message">{message}</div>}
           <label>
             Username:
             <input

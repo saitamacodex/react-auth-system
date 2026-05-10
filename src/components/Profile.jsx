@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { React, useState } from "react";
 
 function Profile({ token, loginMsg }) {
-  const [message, setMessage] = useState(loginMsg);
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -29,7 +28,7 @@ function Profile({ token, loginMsg }) {
 
   return (
     <div>
-      {message && <div className="success-message">{message}</div>}
+      {loginMsg && <div className="success-message">{loginMsg}</div>}
       <h2>Profile</h2>
       <hr />
       <br />
