@@ -66,15 +66,17 @@ function Register({ setTab }) {
 
         if (response.ok) {
           setMessage("Registration successful. Please login.");
-          setTab("Login");
-          setTimeout(() => {
-            setMessage("Login");
-          }, 5000);
-        } else if (response.status === 409) {
-          setMessage("User already exists. Please login.");
-          setTab("Login");
+
           setTimeout(() => {
             setMessage("");
+            setTab("Login");
+          }, 900);
+        } else if (response.status === 409) {
+          setMessage("User already exists. Please login.");
+
+          setTimeout(() => {
+            setMessage("");
+            setTab("Login");
           }, 900);
         } else {
           alert(data.message);
