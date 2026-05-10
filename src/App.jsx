@@ -16,7 +16,6 @@ function App() {
         <Profile
           token={accessToken}
           loginMsg={LoginMessage}
-          loggedIn={IsLoggedIn}
           setIsLoggedIn={setIsLoggedIn}
         />
       ) : (
