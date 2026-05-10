@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Login from "./Login.jsx";
 
-function Register() {
+function Register({ setTab }) {
   const [values, setValues] = useState({
     username: "",
     email: "",
@@ -10,7 +10,6 @@ function Register() {
   });
   const [errors, setErrors] = useState({});
   const [responses, setResponses] = useState({});
-  const [showLogin, setShowLogin] = useState(false);
   const [message, setMessage] = useState("");
 
   function set(field) {
@@ -67,18 +66,16 @@ function Register() {
 
         if (response.ok) {
           setMessage("Registration successful. Please login.");
-          setShowLogin(true);
-
+          setTab("Login");
           setTimeout(() => {
-            setMessage("");
+            setMessage("Login");
           }, 5000);
         } else if (response.status === 409) {
           setMessage("User already exists. Please login.");
-          setShowLogin(true);
-
+          setTab("Login");
           setTimeout(() => {
             setMessage("");
-          }, 5000);
+          }, 900);
         } else {
           alert(data.message);
         }
@@ -90,56 +87,50 @@ function Register() {
 
   return (
     <div>
-      {!showLogin ? (
-        <form onSubmit={handleSubmit}>
-          <label>
-            Username:
-            <input
-              type="text"
-              value={values.username}
-              onChange={set("username")}
-              placeholder="Enter your username"
-            />
-          </label>
-          {errors.username && <span>{errors.username}</span>}
-          <label>
-            Email:
-            <input
-              type="email"
-              value={values.email}
-              onChange={set("email")}
-              placeholder="Enter your email-id."
-            />
-          </label>
-          {errors.email && <span>{errors.email}</span>}
-          <label>
-            Password:
-            <input
-              type="password"
-              value={values.password}
-              onChange={set("password")}
-              placeholder="Enter your passwords."
-            />
-          </label>
-          {errors.password && <span>{errors.password}</span>}
-          <label>
-            Role:
-            <input
-              type="text"
-              value={values.role}
-              onChange={set("role")}
-              placeholder="Enter your roles"
-            />
-          </label>
-          {errors.role && <span>{errors.role}</span>}
-          <button type="submit">Submit</button>
-        </form>
-      ) : (
-        <>
-          <div className="success-message">{message}</div>
-          <Login />
-        </>
-      )}
+      {message && <div className="success-message">{message}</div>}
+      <form onSubmit={handleSubmit}>
+        <label>
+          Username:
+          <input
+            type="text"
+            value={values.username}
+            onChange={set("username")}
+            placeholder="Enter your username"
+          />
+        </label>
+        {errors.username && <span>{errors.username}</span>}
+        <label>
+          Email:
+          <input
+            type="email"
+            value={values.email}
+            onChange={set("email")}
+            placeholder="Enter your email-id."
+          />
+        </label>
+        {errors.email && <span>{errors.email}</span>}
+        <label>
+          Password:
+          <input
+            type="password"
+            value={values.password}
+            onChange={set("password")}
+            placeholder="Enter your passwords."
+          />
+        </label>
+        {errors.password && <span>{errors.password}</span>}
+        <label>
+          Role:
+          <input
+            type="text"
+            value={values.role}
+            onChange={set("role")}
+            placeholder="Enter your roles"
+          />
+        </label>
+        {errors.role && <span>{errors.role}</span>}
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }

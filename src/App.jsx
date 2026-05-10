@@ -28,7 +28,7 @@ function App() {
             <button onClick={() => setTab("Login")}>Login</button>
           </div>
 
-          {tab === "Register" && <Register />}
+          {tab === "Register" && <Register setTab={setTab} />}
           {tab === "Login" && (
             <Login
               setIsLoggedIn={setIsLoggedIn}
